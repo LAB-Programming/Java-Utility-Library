@@ -1,0 +1,14 @@
+This is a library in which we put utility classes that we feel java is missing
+
+Currently in the library:
+	-com.lab_programming.util.RegularTokenizer
+		Description:
+			Like the StringTokenizer class in java.util but can handle regular expressions
+		Status:
+			Bug-free and functional but there is still a bit of work to do
+		Bugs: None known
+		To do (prioritized):
+			-Documentation
+			-Add a countTokens() similar to StringTokenizer's
+			-Make it iterable
+	
