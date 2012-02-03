@@ -97,5 +97,23 @@ public class RegularTokenizer implements Enumeration<String> {
 	public String nextElement() throws NoSuchElementException {
 		return nextToken();
 	}
+	
+	public int countTokens() {
+		int curPos = currentPosistion;
+		int i = 0;
+		while(matcher.find(curPos)){
+			if(curPos != matcher.start()) {
+				curPos = matcher.start();
+				i++;
+			}else if(returnDelim) {
+				curPos = matcher.end();
+				i++;
+			}else {
+				curPos = matcher.end();
+			}
+		}
+		if(curPos < maxPosistion) i++;
+		return i;
+	}
 
 }

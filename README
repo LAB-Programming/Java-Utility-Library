@@ -13,12 +13,13 @@ Currently in the library:
 		Status:
 			Bug-free and functional but there is still a bit of work to do
 		Bugs: None known
-		To do (prioritized):
+		To do (prioritized in each from most to least important):
 			Required Bug Fixes: None
 			Important Improvements:
 				-Documentation
-				-Add a countTokens() similar to StringTokenizer's
 			Future Plans:
+				-Allow it to be constructed from a pattern (or maybe even a matcher)
 				-Make it extend StringTokenizer
+				-Make it thread-safe
 				-Make it iterable
 	
