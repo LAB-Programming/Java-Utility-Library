@@ -9,16 +9,18 @@ IMPORTANT: Do not push a library class or classes to the master branch until:
 Currently in the library:
 	-com.lab_programming.util.RegularTokenizer
 		Description:
-			Like the StringTokenizer class in java.util but can handle regular expressions
+			Like the StringTokenizer class in java.util but can handle
+				regular expressions
 		Status:
-			Bug-free and functional but there is still a bit of work to do
+			Bug-free and functional documentation is all that is left
 		Bugs: None known
-		To do (prioritized in each from most to least important):
+		To do (prioritized in each category from most to least important):
 			Required Bug Fixes: None
 			Important Improvements:
 				-Documentation
 			Future Plans:
-				-Allow it to be constructed from a pattern (or maybe even a matcher)
+				-Allow it to be constructed from a pattern (or maybe
+					even a matcher)
 				-Make it extend StringTokenizer
 				-Make it thread-safe
 				-Make it iterable
