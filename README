@@ -5,6 +5,9 @@ IMPORTANT: Do not push a library class or classes to the master branch until:
 	   2. It has no pending bug fixes
 	   3. It has no important improvements
 	   4. It MUST have documentation
+	   5. Make sure to use eclipse's Clean Up... command and use the included
+		   Clean Up settings (you can modify them if there is something you
+		   really don't like)
 
 Currently in the library:
 	-com.lab_programming.util.RegularTokenizer
