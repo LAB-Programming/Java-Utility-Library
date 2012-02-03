@@ -1,5 +1,11 @@
 This is a library in which we put utility classes that we feel java is missing
 
+IMPORTANT: Do not push a library class or classes to the master branch until:
+	   1. It has no bugs
+	   2. It has no pending bug fixes
+	   3. It has no important improvements
+	   4. It MUST have documentation
+
 Currently in the library:
 	-com.lab_programming.util.RegularTokenizer
 		Description:
@@ -8,7 +14,11 @@ Currently in the library:
 			Bug-free and functional but there is still a bit of work to do
 		Bugs: None known
 		To do (prioritized):
-			-Documentation
-			-Add a countTokens() similar to StringTokenizer's
-			-Make it iterable
+			Required Bug Fixes: None
+			Important Improvements:
+				-Documentation
+				-Add a countTokens() similar to StringTokenizer's
+			Future Plans:
+				-Make it extend StringTokenizer
+				-Make it iterable
 	
