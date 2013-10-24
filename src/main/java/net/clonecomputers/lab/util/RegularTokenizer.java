@@ -1,4 +1,4 @@
-package com.lab_programming.util;
+package net.clonecomputers.lab.util;
 
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
