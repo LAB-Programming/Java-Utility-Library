@@ -1,4 +1,4 @@
-package com.lab_programming.util;
+package net.clonecomputers.lab.util;
 
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
@@ -19,7 +19,7 @@ public class RegularTokenizer implements Enumeration<String> {
 			final boolean returnDelims) throws NullPointerException,
 			PatternSyntaxException {
 		if (str == null)
-			throw new NullPointerException();
+			throw new NullPointerException("str is null");
 		this.str = str;
 		returnDelim = returnDelims;
 		assignNewRegex(regex);
@@ -37,12 +37,12 @@ public class RegularTokenizer implements Enumeration<String> {
 	private void assignNewRegex(final String regex)
 			throws NullPointerException, PatternSyntaxException {
 		if (regex == null)
-			throw new NullPointerException();
+			throw new NullPointerException("regex is null");
 		delim = Pattern.compile(regex);
 		matcher = delim.matcher(str);
 		if (!returnDelim) {
 			while (matcher.find()) {
-				if (matcher.end() == str.length()) {
+				if (matcher.end() >= str.length()) {
 					maxPosistion = matcher.start();
 				} else {
 					maxPosistion = str.length();
@@ -62,7 +62,7 @@ public class RegularTokenizer implements Enumeration<String> {
 		while (true) {
 			if (!matcher.find(currentPosistion)) {
 				if (!hasMoreTokens())
-					throw new NoSuchElementException();
+					throw new NoSuchElementException("You are at the end of this tokenizer");
 				final String ret = str.substring(currentPosistion);
 				currentPosistion = maxPosistion;
 				return ret;
@@ -96,6 +96,24 @@ public class RegularTokenizer implements Enumeration<String> {
 	@Override
 	public String nextElement() throws NoSuchElementException {
 		return nextToken();
+	}
+	
+	public int countTokens() {
+		int curPos = currentPosistion;
+		int i = 0;
+		while(matcher.find(curPos)){
+			if(curPos != matcher.start()) {
+				curPos = matcher.start();
+				i++;
+			}else if(returnDelim) {
+				curPos = matcher.end();
+				i++;
+			}else {
+				curPos = matcher.end();
+			}
+		}
+		if(curPos < maxPosistion) i++;
+		return i;
 	}
 
 }
