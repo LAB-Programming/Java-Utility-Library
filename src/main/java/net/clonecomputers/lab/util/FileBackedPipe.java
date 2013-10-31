@@ -7,6 +7,7 @@ public class FileBackedPipe {
 
 	public FileBackedPipe() throws IOException {
 		backing = File.createTempFile(this.toString(), "pipe");
+		backing.deleteOnExit();
 	}
 
 	public PrintStream getOutputStream() throws IOException {
