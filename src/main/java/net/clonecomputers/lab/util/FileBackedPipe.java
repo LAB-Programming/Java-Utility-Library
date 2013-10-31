@@ -10,7 +10,7 @@ public class FileBackedPipe {
 		backing.deleteOnExit();
 	}
 
-	public OutputStream getOutputStream() throws IOException {
+	public PrintStream getOutputStream() throws IOException {
 		try {
 			return new PrintStream(new WakeUpOutputStream(new FileOutputStream(backing)));
 		} catch (FileNotFoundException e) {
