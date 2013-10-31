@@ -1,42 +1,59 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>net.clonecomputers.lab</groupId>
-  <artifactId>Java-Utility-Library</artifactId>
-  <version>2.0.0</version>
-  <packaging>jar</packaging>
+	<groupId>net.clonecomputers.lab</groupId>
+	<artifactId>Java-Utility-Library</artifactId>
+	<version>2.0.0</version>
+	<packaging>jar</packaging>
 
-  <name>Java-Utility-Library</name>
-  <url>https://github.com/LAB-Programming/Java-Utility-Library</url>
+	<name>Java-Utility-Library</name>
+	<url>https://github.com/LAB-Programming/Java-Utility-Library</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  
-  <organization>
-  	<url>http://lab.clonecomputes.net</url>
-  </organization>
-  
-  <distributionManagement>
-  	<repository>
-  		<id>LABMaven</id>
-  		<name>LAB Release Maven Repo</name>
-  		<url>http://gavin.clonecomputers.net:8081/nexus/content/repositories/releases/</url>
-  	</repository>
-  	<snapshotRepository>
-  		<id>LABMaven</id>
-  		<name>LAB Snapshot Maven Repo</name>
-  		<url>http://gavin.clonecomputers.net:8081/nexus/content/repositories/snapshots/</url>
-  	</snapshotRepository>
-  </distributionManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+					<executable>${env.JAVA_HOME_6}/bin/javac</executable>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<organization>
+		<url>http://lab.clonecomputes.net</url>
+	</organization>
+
+	<distributionManagement>
+		<repository>
+			<id>LABMaven</id>
+			<name>LAB Release Maven Repo</name>
+			<url>http://gavin.clonecomputers.net:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>LABMaven</id>
+			<name>LAB Snapshot Maven Repo</name>
+			<url>http://gavin.clonecomputers.net:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
