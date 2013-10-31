@@ -54,10 +54,6 @@ public class JConsole extends JPanel{
 		new Thread(new StreamWatcher(out.getInputStream(), textArea, Color.BLACK)).start();
 		new Thread(new StreamWatcher(err.getInputStream(), textArea, Color.RED)).start();
 	}
-	
-	public BufferedInputStream wrap(File f) throws FileNotFoundException{
-		return new BufferedInputStream(new IgnoreEOFInputStream(new FileInputStream(f)));
-	}
 
 	public void initGUI() {
 		textArea = new JTextPane();
