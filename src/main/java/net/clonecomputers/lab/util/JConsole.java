@@ -26,7 +26,7 @@ public class JConsole extends JPanel{
 		consoleWindow.pack();
 		consoleWindow.setSize(800, 600);
 		consoleWindow.getContentPane().add(guiConsole);
-		consoleWindow.setResizable(false);
+		consoleWindow.setResizable(true);
 		consoleWindow.setVisible(true);
 		consoleWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
@@ -49,7 +49,7 @@ public class JConsole extends JPanel{
 		in = new FileBackedPipe();
 		out = new FileBackedPipe();
 		err = new FileBackedPipe();
-		inOutput = in.getOutputStream();
+		inOutput = new PrintStream(in.getOutputStream());
 		new Thread(new StreamWatcher(in.getInputStream(), textArea, new Color(0,192,0))).start();
 		new Thread(new StreamWatcher(out.getInputStream(), textArea, Color.BLACK)).start();
 		new Thread(new StreamWatcher(err.getInputStream(), textArea, Color.RED)).start();
@@ -112,7 +112,7 @@ public class JConsole extends JPanel{
 
 	public PrintStream getOut(){
 		try {
-			return out.getOutputStream();
+			return new PrintStream(out.getOutputStream());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -120,7 +120,7 @@ public class JConsole extends JPanel{
 
 	public PrintStream getErr(){
 		try {
-			return err.getOutputStream();
+			return new PrintStream(err.getOutputStream());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
