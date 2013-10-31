@@ -49,7 +49,7 @@ public class JConsole extends JPanel{
 		in = new FileBackedPipe();
 		out = new FileBackedPipe();
 		err = new FileBackedPipe();
-		inOutput = new PrintStream(in.getOutputStream());
+		inOutput = in.getOutputStream();
 		new Thread(new StreamWatcher(in.getInputStream(), textArea, new Color(0,192,0))).start();
 		new Thread(new StreamWatcher(out.getInputStream(), textArea, Color.BLACK)).start();
 		new Thread(new StreamWatcher(err.getInputStream(), textArea, Color.RED)).start();
@@ -112,7 +112,7 @@ public class JConsole extends JPanel{
 
 	public PrintStream getOut(){
 		try {
-			return new PrintStream(out.getOutputStream());
+			return out.getOutputStream();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -120,7 +120,7 @@ public class JConsole extends JPanel{
 
 	public PrintStream getErr(){
 		try {
-			return new PrintStream(err.getOutputStream());
+			return err.getOutputStream();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
