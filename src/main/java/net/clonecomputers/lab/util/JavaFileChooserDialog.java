@@ -134,6 +134,7 @@ public class JavaFileChooserDialog extends JPanel {
 		if(lastList.isSelectionEmpty()) return null;
 		return (File)lastList.getSelectedValue();
 	}
+	
 	public static File openFile(Container panel){
 		return openFile(panel, FileSystemView.getFileSystemView().getDefaultDirectory());
 	}
@@ -175,6 +176,28 @@ public class JavaFileChooserDialog extends JPanel {
 		}
 		if(jfcd.wasCanceled) return null;
 		return new File(jfcd.getSelectedFile(),filename.getText());
+	}
+	
+	public static File saveDirectory(Container panel){
+		return openFile(panel, FileSystemView.getFileSystemView().getDefaultDirectory());
+	}
+	public static File saveDirectory(Container panel, File startingDirectory){
+		JavaFileChooserDialog jfcd = new JavaFileChooserDialog();
+		jfcd.add(new JLabel("Save file",SwingConstants.CENTER),BorderLayout.NORTH);
+		jfcd.addList(startingDirectory);
+		panel.add(jfcd);
+		panel.setSize(600,400);
+		panel.validate();
+		while(jfcd.getSelectedFile() != null && !jfcd.getSelectedFile().isDirectory())
+		synchronized(jfcd){
+			try {
+				jfcd.wait();
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		if(jfcd.wasCanceled) return null;
+		return jfcd.getSelectedFile();
 	}
 	
 	public static void main(String[] args){
