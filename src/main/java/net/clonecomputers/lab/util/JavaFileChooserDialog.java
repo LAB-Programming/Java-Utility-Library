@@ -115,8 +115,10 @@ public class JavaFileChooserDialog extends JPanel {
 		});
 		list.addMouseListener(new MouseAdapter() {
 			@Override public void mouseClicked(MouseEvent e){
-				synchronized(JavaFileChooserDialog.this){
-					JavaFileChooserDialog.this.notifyAll();
+				if(e.getClickCount() > 1) {
+					synchronized(JavaFileChooserDialog.this){
+						JavaFileChooserDialog.this.notifyAll();
+					}
 				}
 			}
 		});
@@ -137,8 +139,10 @@ public class JavaFileChooserDialog extends JPanel {
 	}
 	public static File openFile(Container panel, File startingDirectory){
 		JavaFileChooserDialog jfcd = new JavaFileChooserDialog();
+		jfcd.add(new JLabel("Choose a file",SwingConstants.CENTER),BorderLayout.NORTH);
 		jfcd.addList(startingDirectory);
 		panel.add(jfcd);
+		panel.setSize(600,400);
 		panel.validate();
 		synchronized(jfcd){
 			try {
@@ -151,6 +155,28 @@ public class JavaFileChooserDialog extends JPanel {
 		return jfcd.getSelectedFile();
 	}
 	
+	public static File saveFile(Container panel){
+		return saveFile(panel, FileSystemView.getFileSystemView().getDefaultDirectory());
+	}
+	public static File saveFile(Container panel, File startingDirectory){
+		JavaFileChooserDialog jfcd = new JavaFileChooserDialog();
+		JTextField filename = new JTextField();
+		jfcd.add(filename,BorderLayout.NORTH);
+		jfcd.addList(startingDirectory);
+		panel.add(jfcd);
+		panel.setSize(600,400);
+		panel.validate();
+		synchronized(jfcd){
+			try {
+				jfcd.wait();
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		if(jfcd.wasCanceled) return null;
+		return new File(jfcd.getSelectedFile(),filename.getText());
+	}
+	
 	public static void main(String[] args){
 		final JFrame window = new JFrame();
 		SwingUtilities.invokeLater(new Runnable() {
@@ -159,11 +185,11 @@ public class JavaFileChooserDialog extends JPanel {
 			public void run() {
 				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				window.pack();
-				window.setSize(new Dimension(500,400));
+				//window.setSize(new Dimension(500,400));
 				window.setVisible(true);
 			}
 		});
-		System.out.println(openFile(window.getContentPane()));
+		System.out.println(saveFile(window));
 		window.dispose();
 	}
 }
