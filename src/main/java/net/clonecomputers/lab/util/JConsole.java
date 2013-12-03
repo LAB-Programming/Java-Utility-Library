@@ -91,6 +91,7 @@ public class JConsole extends JPanel{
 			try {
 				while(true){
 					numChars = stream.read(buff);
+					if(numChars <= 0) continue;
 					String text = new String(buff, 0, numChars);
 					document.insertString(document.getLength(), text, style);
 				}
